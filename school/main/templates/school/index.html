@@ -1,0 +1,48 @@
+{% extends 'school/base.html'%}
+{% block title%}
+{{title}}
+{% endblock%}
+{% block content %}
+
+    <h1>Страница решения</h1>
+    {% if tasks %}
+        {% for el in tasks %}
+            <div class="alert alert-warning mt-2">
+                <h3>{{el.title}} </h3>
+
+
+                <input type="text" placeholder ="Введите овтет" class = "form-control"><br>
+
+                <button type = "submit" class = "answer">Ответить</button>
+                <span class = 'otvet' style = opacity:0>{{el.task}}</span>
+            </div>
+
+
+        <script>
+
+        document.addEventListener("DOMContentLoaded", function(event) {
+        document.querySelector('.answer').onclick = myClick;
+
+        function myClick(){
+            let a = document.querySelector('.form-control').value;
+
+
+            if (a != ''){
+                console.log(document.querySelector('.otvet').innerHTML);
+                console.log(a);
+                if (a == document.querySelector('.otvet').innerHTML) {
+                    alert( 'Поздравляем, правильно!' );
+                } else {
+                alert( 'Попробуйте еще раз.' );}
+            document.querySelector('.form-control').value = '';
+            }else{
+            alert('Введите ответ!');}
+            }
+         });
+    </script>
+        {%endfor%}
+    {% else %}
+        <p>Пока заданий нет</p>
+    {% endif %}
+
+{% endblock%}

@@ -1,0 +1,22 @@
+{% extends 'school/base.html'%}
+{% block title%}
+{{title}}
+{% endblock%}
+{% block content %}
+    <h1>Страница решения</h1>
+    {% if tasks %}
+        {% for el in tasks %}
+            <div class="alert alert-warning mt-2">
+                <h3>Задание: {{el.title}} </h3>
+                <h3 class ="check">Ответ: {{el.task}} </h3>
+                <script>document.querySelector('.check').value = {{el.task}};</script>
+
+            </div>
+        {%endfor%}
+
+    {% else %}
+        <p>Пока заданий нет</p>
+    {% endif %}
+
+
+{% endblock%}
